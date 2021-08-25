@@ -3,7 +3,7 @@ def MySearch(x) :
     while (n**2) + (3*n) >= 2*(x-1) :
         n-=1
         # print(n)
-    cnt = int((n**2 + 3*n) / 2) + 1
+    cnt = int((n**2 + 3*n) / 2) + 1 #현재 몇번째에 있는지
     # print(cnt)
 
 
