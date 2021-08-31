@@ -5,7 +5,7 @@ for i in range(len(word)) :
     if word[i] == "=" or word[i] == "-":
         if i-2>=0 and word[i-1]=="z" and word[i-2] == "d" :
             cnt -= 2
-        else :
+        elif word[i-1] in ("c","d","s","z") :
              cnt -= 1
     elif word[i] =="j" :
         if i-1>=0 and word[i-1] =="l" or word[i-1] =="n":
