@@ -1,3 +1,4 @@
+# 원의 교점 공식
 T = int(input())
 
 for tc in range(T) :
@@ -10,9 +11,9 @@ for tc in range(T) :
         print(-1)
     elif ls[0] == ls[3] and ls[1] == ls[4] and r1 != r2 :
         print(0)
-    elif distance < r1+r2 or max(r1,r2)>=distance and distance > abs(r1-r2):
+    elif distance < r1+r2 and distance > abs(r1-r2):
         print(2)
-    elif distance == r1+r2 or max(r1,r2)>=distance and distance == abs(r1-r2):
+    elif distance == r1+r2 or distance == abs(r1-r2):
         print(1)
     else :
         print(0)
