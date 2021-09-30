@@ -29,8 +29,6 @@ def paper_print(curr, cnt) :
             return cnt
 
 
-
-
 T = int(input())
 for _ in range(T) :
     N , M = map(int, sys.stdin.readline().split()) # 문서 갯수, 몇 번째로 인쇄되었는지 궁금한 문서가 현재 몇번째에 놓여있는지 나타내는 정수
