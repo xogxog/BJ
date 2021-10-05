@@ -1,3 +1,5 @@
+# 로직 보다는 입력받는게 어려웠다.
+
 from collections import deque
 T = int(input())
 
