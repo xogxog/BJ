@@ -4,8 +4,6 @@ dx = [0,0,-1,1,0,0]
 dy = [1,-1,0,0,0,0]
 dz = [0,0,0,0,1,-1]
 
-
-
 def tomato():
 
 
@@ -19,9 +17,6 @@ def tomato():
             if ls[mx][my][mz] == -1 :
                 continue
             elif 0<=mx<M and 0<=my<N and 0<=mz<H and ls[mx][my][mz] :
-
-
-
 
 
 M,N,H = map(int,input().split()) # 가로, 세로 , 높이
