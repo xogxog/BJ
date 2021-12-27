@@ -5,18 +5,16 @@ people_in_class = list(map(int,sys.stdin.readline().split()))
 main_supervisor, sub_supervisor = map(int, sys.stdin.readline().split())
 
 # print(n, people_in_class, main,sub)
-result = n
+result = 0
 for i in range(n) :
-    people_in_class[i] -= main_supervisor
-    cnt = 1
-    if people_in_class[i] > 0 :
-        while True :
-            num_of_sub_supervisor = sub_supervisor * cnt
-            if num_of_sub_supervisor >= people_in_class[i] :
-                break
-            else :
-                cnt += 1
-    result += cnt
+    if people_in_class[i] >= main_supervisor : # 마이너스 값일 때 나눠도 값이 나와버리기 때문에 이 조건문을 꼭 넣어줘야한다.
+        people_in_class[i] -= main_supervisor
+        sub1 = people_in_class[i] // sub_supervisor
+
+        if people_in_class[i] % sub_supervisor != 0 :
+            result += sub1 +1
+        else :
+            result += sub1
 
 
-print(result)
+print(result +n)
