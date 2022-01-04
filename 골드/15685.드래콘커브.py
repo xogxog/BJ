@@ -7,7 +7,7 @@ dc = [1,0,-1,0]
 dr = [0,-1,0,1]
 for i in range(len(dragon_curve)) :
     gen = 0
-    c, r = dragon_curve[i][0], dragon_curve[i][1]
+    c, r = dragon_curve[i][0], dragon_curve[i][1] # 반대로 넣어야 함
     flying[r][c] = 1
     turn = [dragon_curve[i][2]]
 

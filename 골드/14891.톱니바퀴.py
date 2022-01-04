@@ -40,11 +40,13 @@ for _ in range(turn) :
 
     for i in range(4) :
         if p[i] == -1 :
-            tmp = gear[i].popleft()
-            gear[i].append(tmp)
+            # tmp = gear[i].popleft()
+            # gear[i].append(tmp)
+            gear[i].rotate(p[i])
         elif p[i] == 1 :
-            tmp = gear[i].pop()
-            gear[i].appendleft(tmp)
+            # tmp = gear[i].pop()
+            # gear[i].appendleft(tmp)
+            gear[i].rotate(p[i])
 
 ans = 0
 for j in range(4) :
