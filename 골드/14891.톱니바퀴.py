@@ -42,6 +42,7 @@ for _ in range(turn) :
         if p[i] == -1 :
             # tmp = gear[i].popleft()
             # gear[i].append(tmp)
+            # deque 속성에 rotate가 있다 !
             gear[i].rotate(p[i])
         elif p[i] == 1 :
             # tmp = gear[i].pop()
