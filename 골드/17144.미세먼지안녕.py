@@ -1,3 +1,45 @@
+def cleaning(x,y,up_or_down) :
+
+    tmp = 0  # 그 전 값 담아둘 변수
+    flag = 0
+    for k in range(5):
+        if up_or_down == "down" and k % 2:  # 아래 공기청정기이고, 홀 일때는 반대 방향
+            nx = x - dr[k % 4]
+            ny = y - dc[k % 4]
+
+        else :
+            nx = x + dr[k % 4]
+            ny = y + dc[k % 4]
+        while 0 <= nx < R and 0 <= ny < C:  # 움직일 범위 안에 있을 때 까지만 돌기
+
+            if dust[nx][ny] == -1:  # 다 돌아서 공기청정기랑 만났을 때, 종료
+                flag = 1
+                break
+
+            if dust[x][y] == -1:
+                tmp = dust[nx][ny]
+                dust[nx][ny] = 0
+            else:
+                tmp, dust[nx][ny] = dust[nx][ny], tmp
+
+            x, y = nx, ny
+
+            if up_or_down == "down" and k % 2:  # 아래 공기청정기이고, 홀 일때는 반대 방향
+                nx = x - dr[k % 4]
+                ny = y - dc[k % 4]
+
+            else:
+                nx = x + dr[k % 4]
+                ny = y + dc[k % 4]
+
+            # for z in range(R):
+            #     print(*dust[z])
+            # print(f'==========================')
+            # print(nx, ny)
+        if flag :
+            break
+
+
 R, C, T = map(int, input().split())  # 행, 열, 초
 
 dust = [list(map(int, input().split())) for _ in range(R)]
@@ -10,10 +52,9 @@ for n in range(R):
             cleaner.append([n+1, o])
     if len(cleaner):
         break
-print(cleaner)
-
 time = 0
 
+# 우 상 좌 하
 dr = [0, -1, 0, 1]
 dc = [1, 0, -1, 0]
 
@@ -40,8 +81,11 @@ while time < T:
             dust[l][m] += tmp_dust[l][m]
     turn_dust = [[0]*C for _ in range(R)]
     # 공기청정기로 회전
-    for  in range(5) :
-        x , y =
-
+    cleaning(cleaner[0][0], cleaner[0][1], 'up')
+    cleaning(cleaner[1][0],cleaner[1][1],'down')
 
     time += 1
+ans = 0
+for e in range(R) :
+    ans += sum(dust[e])
+print(ans +2)
