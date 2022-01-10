@@ -2,21 +2,21 @@ def cleaning(x,y,up_or_down) :
 
     tmp = 0  # 그 전 값 담아둘 변수
     flag = 0
-    for k in range(5):
+    for k in range(4):
         if up_or_down == "down" and k % 2:  # 아래 공기청정기이고, 홀 일때는 반대 방향
-            nx = x - dr[k % 4]
-            ny = y - dc[k % 4]
+            nx = x - dr[k]
+            ny = y - dc[k]
 
         else :
-            nx = x + dr[k % 4]
-            ny = y + dc[k % 4]
+            nx = x + dr[k]
+            ny = y + dc[k]
         while 0 <= nx < R and 0 <= ny < C:  # 움직일 범위 안에 있을 때 까지만 돌기
 
             if dust[nx][ny] == -1:  # 다 돌아서 공기청정기랑 만났을 때, 종료
                 flag = 1
                 break
 
-            if dust[x][y] == -1:
+            if dust[x][y] == -1: # 시작
                 tmp = dust[nx][ny]
                 dust[nx][ny] = 0
             else:
@@ -25,12 +25,12 @@ def cleaning(x,y,up_or_down) :
             x, y = nx, ny
 
             if up_or_down == "down" and k % 2:  # 아래 공기청정기이고, 홀 일때는 반대 방향
-                nx = x - dr[k % 4]
-                ny = y - dc[k % 4]
+                nx = x - dr[k]
+                ny = y - dc[k]
 
             else:
-                nx = x + dr[k % 4]
-                ny = y + dc[k % 4]
+                nx = x + dr[k]
+                ny = y + dc[k]
 
             # for z in range(R):
             #     print(*dust[z])
@@ -89,3 +89,6 @@ ans = 0
 for e in range(R) :
     ans += sum(dust[e])
 print(ans +2)
+
+
+
