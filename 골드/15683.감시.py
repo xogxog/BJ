@@ -11,40 +11,37 @@ def dfs(curr_cctv_num) :
                 if room[l][m] ==0 and visited[l][m] == 0 :
                     tmp_ans += 1
         if tmp_ans < ans :
-            for z in range(N) :
-                print(*visited[z])
-            print(f'===============')
+            # for z in range(N) :
+            #     print(*visited[z])
+            # print(f'===============')
             
             ans = tmp_ans
         return
     else :
-        for i in range(curr_cctv_num,len(cctv)) : # curr_cctv_num 을 넣어줘야 
-            
-            r,c = cctv[i]
-            q = deque()
-            for j in direction[room[r][c]] :
-                for k in j :
-                    nr = r + dr[k]
-                    nc = c + dc[k]
 
-                    while 0<=nr<N and 0<=nc<M and room[nr][nc] != 6 : # 옮기는 좌표가 범위안, 벽이 아니라면 계속 가야함
-                        if room[nr][nc] == 0 : # 경로가 겹치는 경우엔 합쳐서 가야함 ,, ! cctv끼리는 뚫을 수 있음
-                            visited[nr][nc] += 1
-                            q.append((nr,nc))
-                        nr = nr + dr[k]
-                        nc = nc + dc[k]
-                # for z in range(N) :
-                #     print(*visited[z])
-                # print(f'===============')
-                dfs(curr_cctv_num+1)
-                # visited 전상태로 되돌려 주기 / 5의 한가지 경우의 수만 있으므로 냅둠
- 
-                while q : # visited 전 상태로 돌려주기
-                    x, y = q.popleft()
-                    visited[x][y] -= 1
-                    # for o in range(len(q)) :
-                    #     x,y = q[o]
-                    #     visited[x][y] -= 1
+            
+        r,c = cctv[curr_cctv_num]
+        q = deque()
+        for j in direction[room[r][c]] :
+            for k in j :
+                nr = r + dr[k]
+                nc = c + dc[k]
+
+                while 0<=nr<N and 0<=nc<M and room[nr][nc] != 6 : # 옮기는 좌표가 범위안, 벽이 아니라면 계속 가야함
+                    if room[nr][nc] == 0 : # 경로가 겹치는 경우엔 합쳐서 가야함 ,, ! cctv끼리는 뚫을 수 있음
+                        visited[nr][nc] += 1
+                        q.append((nr,nc))
+                    nr = nr + dr[k]
+                    nc = nc + dc[k]
+            dfs(curr_cctv_num+1)
+            # visited 전상태로 되돌려 주기 / 5의 한가지 경우의 수만 있으므로 냅둠
+
+            while q : # visited 전 상태로 돌려주기
+                x, y = q.popleft()
+                visited[x][y] -= 1
+                # for o in range(len(q)) :
+                #     x,y = q[o]
+                #     visited[x][y] -= 1
                 
 
 
@@ -77,14 +74,11 @@ for r in range(N) :
                 tmp_nr = r + dr[p]
                 tmp_nc = c + dc[p]
 
-                while 0<=tmp_nr<N and 0<=tmp_nc<M and room[tmp_nr][tmp_nc] != 6 : # 옮기는 좌표가 범위안, 벽이 아니라면 계속 가야함
-                        if room[tmp_nr][tmp_nc] == 0 : # 경로가 겹치는 경우엔 합쳐서 가야함 ,, ! cctv끼리는 뚫을 수 있음
+                while 0<=tmp_nr<N and 0<=tmp_nc<M and room[tmp_nr][tmp_nc] != 6 : 
+                        if room[tmp_nr][tmp_nc] == 0 : 
                             visited[tmp_nr][tmp_nc] = 1
                         tmp_nr = tmp_nr + dr[p]
                         tmp_nc = tmp_nc + dc[p]
-                for z in range(N) :
-                    print(*visited[z])
-                print(f'===============')
 dfs(0) # cctv 갯수 만큼 보도록
 print(ans)
 
