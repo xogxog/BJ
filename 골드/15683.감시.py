@@ -1,5 +1,4 @@
 from collections import deque
-from copy import deepcopy
 
 def dfs(curr_cctv_num) :
     global visited, ans
@@ -11,10 +10,6 @@ def dfs(curr_cctv_num) :
                 if room[l][m] ==0 and visited[l][m] == 0 :
                     tmp_ans += 1
         if tmp_ans < ans :
-            # for z in range(N) :
-            #     print(*visited[z])
-            # print(f'===============')
-            
             ans = tmp_ans
         return
     else :
@@ -39,11 +34,6 @@ def dfs(curr_cctv_num) :
             while q : # visited 전 상태로 돌려주기
                 x, y = q.popleft()
                 visited[x][y] -= 1
-                # for o in range(len(q)) :
-                #     x,y = q[o]
-                #     visited[x][y] -= 1
-                
-
 
 N,M = map(int,input().split()) # 4 6 이면 세로 4 가로 6
 room =[list(map(int,input().split())) for _ in range(N)]
