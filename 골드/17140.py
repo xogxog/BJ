@@ -42,7 +42,7 @@ t = 0  # time
 while True:
     # r,c 범위 지정해 줘야한다
 
-    if r-1 < cnt_r and c-1 < cnt_c and my_list[r - 1][c - 1] == k:
+    if r-1 < cnt_r and c-1 < cnt_c and my_list[r - 1][c - 1] == k :
         print(t)
         break
 
@@ -60,6 +60,7 @@ while True:
             for n in range(len(my_list[m])):
                 swap_list[n][m] = my_list[m][n]
 
+        # my_list = list(map(list,zip(*my_list)))
 
         cnt_r, cnt_c, returned_swap_list = my_sort(swap_list)
 
