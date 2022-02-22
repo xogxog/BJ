@@ -20,7 +20,7 @@ while True :
                 robot[i+1] = 1
             if belt[i + 1] == 0 :
                 num += 1
-    if belt[0] > 0 and robot[0] == 0 : # 내구도 0보다 크고, 로봇이 없다면
+    if belt[0] > 0 and robot[0] == 0 : # 내구도 0보다 크고, 로봇이 없다면 ( 로봇 올리기 )
         robot[0] = 1
         belt[0] -= 1
         if belt[0] == 0 :

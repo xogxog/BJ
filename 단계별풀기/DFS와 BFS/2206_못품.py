@@ -1,52 +1,38 @@
-# 2206 - 벽 부수고 이동하기
+import sys
+from collections import deque
+read = sys.stdin.readline
 
-# 상하좌우
-dr = [-1,1,0,0]
-dc = [0,0,-1,1]
+def bfs(r, c, destroy):
+    global min_cnt
+    drc = [[-1,0], [1,0], [0,-1], [0,1]]
+    q = deque()
+    q.append((r, c, destroy))
+    while q:
+        cr, cc, destroy = q.popleft()
 
-def dfs(r,c,road,crush):
-    global ans
-    if road > ans :
-        ans = road
+        if cr == n-1 and cc == m-1:
+            break
+        for i in range(4):
+            mr = cr + drc[i][0]
+            mc = cc + drc[i][1]
+            if mr < 0 or mr >= n or mc < 0 or mc >= m: continue
+            if visited[mr][mc] < visited[cr][cc] + 1: continue
+            if maze[mr][mc] == '0':
+                visited[mr][mc] = visited[cr][cc] + 1
+                q.append((mr, mc, destroy))
+            elif destroy:
+                visited[mr][mc] = visited[cr][cc] + 1
+                q.append((mr, mc, False))
+    # print(f'=======================')
+    # for j in range(n) :
+    #     print(*visited[j])
+n, m = map(int, read().split())
+maze = [list(read().rstrip()) for _ in range(n)]
+visited = [[0]*m for _ in range(n)]
+visited[0][0] = 1
 
-    visited[r][c] = 1
-
-    for i in range(4) :
-        nr = r + dr[i]
-        nc = c + dc[i]
-
-        if 0<=nr<N and 0<=nc<M and not visited[nr][nc] :
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-N,M = map(int,input().split())
-ls = [input() for _ in range(N)]
-visited = [[0] * M for _ in range(N)]
-ans = 0
-
-crush = 1
-road = 1
-dfs(0,0,road,crush)
-
-
-
-
-
-
-
-
-
-
-
+bfs(0, 0, True)
+if visited[n-1][m-1] == 10000 :
+    print(-1)
+else :
+    print(visited[n-1][m-1])

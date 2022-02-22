@@ -20,8 +20,7 @@ def ladder_leg(cnt,start) :
     if cnt >= 4 :
         ans = -1
         return
-    # elif flag :
-    #     return
+
     # 사다리 가로로 다리 놓음
     for j in range(start,H):
         for k in range(N-1):
@@ -38,6 +37,8 @@ def ladder_leg(cnt,start) :
                         return
                     ladder[j][k] = 0
                     if flag :
+                        print(ans)
+                        exit(0)
                         return
 
     return -1 # 모든 경우의수를 봤는데도 불가능한 경우
