@@ -8,10 +8,6 @@ import sys
 n = int(input())
 ls = list(map(int,sys.stdin.readline().split()))
 
-
-
-
-
 zero_point = [0]
 s=0
 ans =[0]
@@ -45,5 +41,6 @@ for i in range(1,n) :
                 zero_point += [i]
             # print(44444, s, ans)
 
-print(' '.join(list(map(str,ans))))
+# print(' '.join(list(map(str,ans))))
+print(*ans)
 
