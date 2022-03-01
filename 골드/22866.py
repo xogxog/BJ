@@ -50,3 +50,4 @@ for idx,num in record :
         print(0)
     else :
         print(idx,num)
+
