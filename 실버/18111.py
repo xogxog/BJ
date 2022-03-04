@@ -1,17 +1,15 @@
 import sys
 
 def dig(n,B) :
-    global min_time, min_ground
+    global min_time, min_ground,max_hei
     tmp_time = 0
     for i in range(N):
         for j in range(M):
-            if ground[i][j]==n :
-                continue
-            elif ground[i][j] < n :
+            if ground[i][j] < n :
                 up = n-ground[i][j]
                 tmp_time += up
                 B -= up
-            elif ground[i][j] > n :
+            else :
                 down = ground[i][j] - n
                 tmp_time += (down*2)
                 B += down
@@ -19,8 +17,7 @@ def dig(n,B) :
             return
     if B >= 0 and tmp_time<=min_time : # 남은 블록이 있고, 시간 짧은경우
         min_time = tmp_time
-        if min_ground < n :
-            min_ground = n
+        max_hei = n
 
 
 N,M,B = map(int,sys.stdin.readline().split())
@@ -41,6 +38,6 @@ max_hei = -1
 
 for k in range(min_ground,max_ground+1) :
     dig(k,B)
-print(min_time,min_ground)
+print(min_time,max_hei)
 
 
