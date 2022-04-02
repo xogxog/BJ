@@ -1,6 +1,15 @@
 import sys
 from collections import deque
 input = sys.stdin.readline
+
+def my_graph(q) :
+    while q :
+        now = q.popleft()
+        for i in adj_ls[now] :
+            if not visited[i]:
+                q.append(i)
+                visited[i] = 1
+
 N,M = map(int,input().split())
 adj_ls = [[] for _ in range(N+1)]
 for _ in range(M) :
@@ -11,22 +20,12 @@ for _ in range(M) :
 visited = [0] * (N+1)
 cnt = 0
 visited[0] = 1
-visited[1] = 1
 q = deque()
-q.append(1)
-flag = 1
-while flag :
-    while q :
-        now = q.popleft()
-        for i in adj_ls[now] :
-            if not visited[i]:
-                q.append(i)
-                visited[i] = 1
+for _i in range(1,N+1) :
+    if not visited[_i] :
+        visited[_i] = 1
+        q.append(_i)
+        my_graph(q)
+        cnt += 1
 
-    cnt +=1
-    try :
-        q.append(visited.index(0))
-    except :
-        flag = 0
-        pass
 print(cnt)
