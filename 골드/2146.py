@@ -1,3 +1,4 @@
+# my land 에다가 랜드 번호 붙이고, visited bfs로 풀자
 import sys
 from collections import deque
 input = sys.stdin.readline
