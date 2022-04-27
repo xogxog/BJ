@@ -1,5 +1,7 @@
 # 연구소 3
 # 조합 !
+# 오래걸린이유 : 비활성화된 바이러스를 뚫고 지나간다고 생각해야해서 오래걸림
+# 바이러스 뚫는다면, 가장 먼 거리를 계산할때, 해당 lab이 0인지 2 인지 확인을 해야하는 점 때문에 자꾸 틀림
 import sys
 from collections import deque
 
@@ -10,31 +12,35 @@ input = sys.stdin.readline
 N ,M = map(int,input().split()) # M : 놓을 수 있는 바이러스 개수
 
 def my_bfs(q,visited) :
-  global ans
+  global ans, last_point
   zero_cnt = 0
   
   while q :
     r,c = q.popleft()
-    if visited[r][c] > ans :
-      return
-    else :
-      for i in range(4) :
-        nr = r + dr[i]
-        nc = c + dc[i]
-        if 0<=nr<N and 0<=nc<N and not visited[nr][nc] and lab[nr][nc] == 0 :
-          visited[nr][nc] = visited[r][c] + 1
+
+    for i in range(4) :
+      nr = r + dr[i]
+      nc = c + dc[i]
+      if 0<=nr<N and 0<=nc<N and not visited[nr][nc] and (lab[nr][nc] == 0 or lab[nr][nc] == 2) :
+        visited[nr][nc] = visited[r][c] + 1
+        q.append((nr,nc))
+        if lab[nr][nc] == 0 :
           zero_cnt += 1
-          q.append((nr,nc))
+  # print(f'=====================')
+  # for z in range(N) :
+  #   print(*visited[z])
 
   if zero_cnt == air_cnt :
     tmp_max = 0
-    for z in range(N) :
-      if tmp_max < max(visited[z]) :
-        tmp_max = max(visited[z])
+    for y in range(N) :
+      for z in range(N) :
+        if lab[y][z] == 0 and tmp_max < visited[y][z] :
+          tmp_max = visited[y][z]
     if tmp_max < ans :
       ans = tmp_max
+      # print(f'ans : {ans}')
 
-def my_combination(my_arr,start) :
+def my_combination(my_arr,start) : # 바이러스 조합
   
   if len(my_arr) == M :
     q=deque(my_arr)
@@ -60,10 +66,13 @@ for i in range(N) :
       air_cnt += 1
     elif lab[i][j] == 2 :
       virus_loca.append((i,j)) # 바이러스
-my_arr =[] # 바이러스 놓을 곳
-ans = 987654321 # 최소 이동 거리
-my_combination(my_arr,0)
-if ans == 987654321 :
-  print(-1)
-else :
-  print(ans-1)
+if air_cnt == 0 :
+  print(0)
+else : 
+  my_arr =[] # 바이러스 놓을 곳
+  ans = 987654321 # 최소 이동 거리  
+  my_combination(my_arr,0)
+  if ans == 987654321 :
+    print(-1)
+  else :
+    print(ans-1)
