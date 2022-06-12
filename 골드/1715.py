@@ -1,18 +1,20 @@
 # 힙큐, 우선순위 큐!!
 import sys
-from collections import deque
+import heapq
+
 input = sys.stdin.readline
-
-
+ans = 0
 N = int(input())
-tmp_ls = []
+cards =[]
 for _ in range(N) :
-    tmp_ls.append(int(input().rstrip()))
-tmp_ls.sort()
-tmp_ls[1] = tmp_ls[0]+tmp_ls[1]
-ans = tmp_ls[1]
+    heapq.heappush(cards,int(input().rstrip()))
 
-card = deque(tmp_ls[1:])
-print(card)
 
-while card :
+if len(cards) == 1 :
+    print(0)
+else :
+    while len(cards) >1:
+        tmp_sum = heapq.heappop(cards) + heapq.heappop(cards)
+        ans += tmp_sum
+        heapq.heappush(cards,tmp_sum)
+    print(ans)
