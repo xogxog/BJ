@@ -1,4 +1,4 @@
-# 힙큐로 풀어보기 - 최대 힙으로 풀자~!~!
+# 성우 코드 보기
 
 import sys
 import heapq
@@ -81,3 +81,43 @@ print(ans)
 #         heapq.heappush(heap, tmp_h_i)
 #
 # print(ans)
+
+# 성우코드
+import sys
+
+input = sys.stdin.readline
+
+
+def find(x):
+    if x != parent[x]:
+        parent[x] = find(parent[x])
+    return parent[x]
+
+
+def union(a, b):
+    a = find(a)
+    b = find(b)
+    if a > b:
+        parent[a] = b
+    else:
+        parent[b] = a
+
+
+g = int(input())
+p = int(input())
+
+parent = [x for x in range(g + 1)]
+
+ans = 0
+closed = False
+for _ in range(p):
+    gi = int(input())
+    if not closed:
+        x = find(gi)
+        if x == 0:
+            closed = True
+            break
+        else:
+            union(x, x - 1)
+            ans += 1
+print(ans)
