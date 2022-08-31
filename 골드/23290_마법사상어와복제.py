@@ -103,7 +103,7 @@ for _ii in range(S) :
             if smell_cnt[n][o]:
                 smell_cnt[n][o] -= 1
 
-
+    # 5. 물고기복사
     for p in range(4):
         for q in range(4):
             for t in move[p][q] :
@@ -112,6 +112,7 @@ for _ii in range(S) :
 
     max_fish = -1
     s_move_route = []
+
 ans = 0
 for _k in range(4):
     for _l in range(4):
