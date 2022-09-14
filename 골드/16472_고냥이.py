@@ -25,10 +25,7 @@ for start in range(len(meow)):
         # 인식할 수 있는 수에 비해 알파벳 수가 적은 경우
         if start == 0 and end == len(meow)-1:
             ans = len(meow)
-            flag = 0
-            break
-    if flag :
-        break
+
     if cnt == N:
         while end+1<len(meow) and dic[meow[end+1]] != 0 :
             end += 1
