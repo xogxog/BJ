@@ -20,7 +20,6 @@ for k in range(M):
     x,y,z = map(int,input().split())
     trees[x-1][y-1].append(z)
 
-# tmp_trees = [[0]*N for s in range(N)]
 for l in range(K):
     for m in range(N):
         for n in range(N):
@@ -42,13 +41,6 @@ for l in range(K):
 
             # 겨울
             A[m][n] += food[m][n]
-    # print(f'===={l}년, 봄여름====')
-    # print('양분')
-    # for _z in range(N):
-    #     print(*A[_z])
-    # print('심겨진 나무')
-    # for _x in range(N):
-    #     print(*trees[_x])
 
     # 가을
     for _m in range(N):
@@ -61,15 +53,6 @@ for l in range(K):
                         if 0 <= nr < N and 0 <= nc < N:  # 인접칸에 나무 생김
                             trees[nr][nc].append(1)
 
-
-
-    # print(f'===={l}년, 가을 겨울====')
-    # print('양분')
-    # for _z in range(N):
-    #     print(*A[_z])
-    # print('심겨진 나무')
-    # for _x in range(N):
-    #     print(*trees[_x])
 
 ans = 0
 for _p in range(N):
