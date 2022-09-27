@@ -18,5 +18,5 @@ A, B, V = map(int, input().split()) # A : 올라감 , B : 미끄러짐, V : 나�
 n = divmod(V-B , A-B)
 if n[1] > 0 :
     print(n[0]+1)
-else :
+else : 
     print(n[0])

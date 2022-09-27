@@ -14,4 +14,4 @@ for tc in range(T):
         if floor == 0:
             print(h*100+room_num)
         else:
-            print(floor*100 + room_num+1)
+            print(floor*100 + room_num+1) 

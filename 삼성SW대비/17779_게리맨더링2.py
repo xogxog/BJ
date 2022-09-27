@@ -11,7 +11,7 @@ def guyuk(r, c):
             if c + d1 + d2 < N and r - d1 >= 0 and r + d2 < N:  # 5구역을 만들 수 있는 범위
                 tmp = [[0] * N for _ in range(N)]
                 tmp[r][c] = 5
-                # 5구역
+                # 5구역 경계만 칠해줌 - 4개의 for문을 2개로 줄일 수 있다.
                 for i in range(1, d1 + 1):
                     tmp[r - i][c + i] = 5
                 for i in range(1, d2 + 1):
