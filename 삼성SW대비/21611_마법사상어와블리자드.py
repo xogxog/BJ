@@ -1,8 +1,12 @@
+# 빙글빙글을 1차원 리스트로 펴서, 1차원 리스트에 상어위치부터 (0,0)까지 도는 순서 좌표를 넣어서
+# 일일히 돌리지 않고 1차원 리스트를 그냥 for문돌려서 좌표 참고하는게 쉬울듯 -> 곤듀 지훈픽
+
 import queue
 import sys
 from collections import deque
 input = sys.stdin.readline
 
+dirc = [(), (-1, 0), (1, 0), (0, -1), (0, 1)]
 drc = [(0, -1), (1, 0), (0, 1), (-1, 0)]  # 좌하우상
 N, M = map(int, input().split())
 
@@ -92,7 +96,6 @@ def change_pearl():
             nc = c + drc[idx][1]
 
             if A[nr][nc] == 0:
-
                 if tmp[0]:  # 매번 걸리는 조건문 이기도 함.
                     ls += tmp
                 return ls
@@ -105,10 +108,6 @@ def change_pearl():
                 ls += tmp
                 tmp[0] = 1
                 tmp[1] = A[nr][nc]
-            elif A[nr][nc] == 0:
-
-                if tmp[0]:  # 매번 걸리는 조건문 이기도 함.
-                    ls += tmp
 
             r, c = nr, nc
 
@@ -148,21 +147,14 @@ def new_A(ls):
 
 
 A = [list(map(int, input().split())) for _ in range(N)]
-shark = (N//2, N//2)  # 상어위치
+shark = N//2  # 상어위치
 ans = [0, 0, 0, 0]
 for _ in range(M):
     di, si = map(int, input().split())  # 방향, 거리
 
     # 파괴
     for i in range(1, si+1):
-        if di == 1:
-            A[shark[0] - i][shark[1]] = 0
-        elif di == 2:
-            A[shark[0] + i][shark[1]] = 0
-        elif di == 3:
-            A[shark[0]][shark[1] - i] = 0
-        else:
-            A[shark[0]][shark[1] + i] = 0
+        A[shark + dirc[di][0] * i][shark + dirc[di][1] * i] = 0
 
     bomb = 1
     while bomb:
