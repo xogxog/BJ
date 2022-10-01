@@ -66,7 +66,7 @@ for _ in range(M):
         nr = (i + dirc[di][0] * si) % N
         nc = (j + dirc[di][1] * si) % N
 
-        # 이어졌다고 가정하는건 이렇게 계산
+        # 이어졌다고 가정하는건 66~67 처럼 계산
         # if nr >= N or nr < 0:
         #     nr %= N
         # if nc >= N or nc < 0:
