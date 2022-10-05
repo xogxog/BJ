@@ -7,7 +7,8 @@ drc = [(0, 1), (1, 0), (0, -1), (-1, 0)]  # 우하좌상 순서
 
 def bfs():
     q = deque()
-    visited = set((0, 0, 0))
+    # {[(0,0,0)]} -> 이런 튜플을 가진 리스트를 set으로 변환하겠다. / set((0,0,0)) -> 결과 : {0}
+    visited = {(0, 0, 0)}
     q.append((0, 0, 0, 1))  # r,c,destroy,cnt
     while q:
 
@@ -15,6 +16,7 @@ def bfs():
         if r == n-1 and c == m-1:
             return cnt
         for i in range(4):
+            # for dr,dc in drc :
             nr = r + drc[i][0]
             nc = c + drc[i][1]
 
