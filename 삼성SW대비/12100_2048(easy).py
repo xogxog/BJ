@@ -58,17 +58,17 @@ def start(game, cnt):
 
     for move in move_d:
         if move == 'up':
-            tmp_ls = rotate(turn(rotate(deepcopy(game), 'l')),
+            tmp_ls = rotate(turn(rotate(game, 'l')),
                             'r')  # 왼 90도, 되돌리기
             start(tmp_ls, cnt+1)
         elif move == 'down':
-            tmp_ls = rotate(turn(rotate(deepcopy(game), 'r')), 'l')
+            tmp_ls = rotate(turn(rotate(game, 'r')), 'l')
             start(tmp_ls, cnt+1)
         elif move == 'right':
-            tmp_ls = rotate(turn(rotate(deepcopy(game), 'oppo')), 'oppo')
+            tmp_ls = rotate(turn(rotate(game, 'oppo')), 'oppo')
             start(tmp_ls, cnt+1)
         elif move == 'left':
-            tmp_ls = turn(deepcopy(game))
+            tmp_ls = turn(game)
             start(tmp_ls, cnt+1)
 
 
