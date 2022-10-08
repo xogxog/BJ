@@ -1,6 +1,4 @@
 from copy import deepcopy
-
-
 n, m = map(int, input().split())
 
 arr = [list(input().rstrip()) for _ in range(n)]
@@ -67,16 +65,20 @@ def is_visited(arr, cnt):  # 방문체크 or 도착여부 판단
         return True, False
     else:                              # 둘다 도착 X
         if (now_b, now_r, cnt) in visited:  # 방문한 적 있음
-            return False, True
+            return True, False
         else:                          # 방문한 적 없음
             visited.add((now_b, now_r, cnt))
             return False, False
 
 
-def bfs(arr, cnt):
+def dfs(arr, cnt):
     global ans
     if cnt > 10:
         return
+
+    if cnt >= ans:  # 백트래킹
+        return
+
     # 왼
     moved_ls = rotate(move(rotate(deepcopy(arr), 'l')), 'r')
     flag, r_goal = is_visited(moved_ls, cnt)
@@ -84,10 +86,8 @@ def bfs(arr, cnt):
     if flag and r_goal:
         ans = min(ans, cnt)
         return
-    elif flag and not r_goal:
-        return
-    elif not flag and not r_goal:
-        bfs(moved_ls, cnt+1)
+    elif not flag:
+        dfs(moved_ls, cnt+1)
 
     # 오
     moved_ls = rotate(move(rotate(deepcopy(arr), 'r')), 'l')
@@ -96,10 +96,8 @@ def bfs(arr, cnt):
     if flag and r_goal:
         ans = min(ans, cnt)
         return
-    elif flag and not r_goal:
-        return
-    elif not flag and not r_goal:
-        bfs(moved_ls, cnt+1)
+    elif not flag:
+        dfs(moved_ls, cnt+1)
 
     # 아래
     moved_ls = move(deepcopy(arr))
@@ -108,10 +106,8 @@ def bfs(arr, cnt):
     if flag and r_goal:
         ans = min(ans, cnt)
         return
-    elif flag and not r_goal:
-        return
-    elif not flag and not r_goal:
-        bfs(moved_ls, cnt+1)
+    elif not flag:
+        dfs(moved_ls, cnt+1)
 
     # 위
     moved_ls = rotate(move(rotate(deepcopy(arr), 'oppo')), 'oppo')
@@ -120,10 +116,8 @@ def bfs(arr, cnt):
     if flag and r_goal:
         ans = min(ans, cnt)
         return
-    elif flag and not r_goal:
-        return
-    elif not flag and not r_goal:
-        bfs(moved_ls, cnt+1)
+    elif not flag:
+        dfs(moved_ls, cnt+1)
 
 
 end = (0, 0)
@@ -139,5 +133,5 @@ for i in range(n):
             b_ball = (i, j)
 visited.add((b_ball, r_ball, 0))  # 출발지점 체크,,위해서인데 딱히 필요없을 듯
 
-bfs(arr, 1)
+dfs(arr, 1)
 print(ans if ans < 11 else -1)
