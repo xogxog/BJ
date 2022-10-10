@@ -2,7 +2,7 @@ n = int(input())
 ban = [[0]*n for _ in range(n)]
 dr = [0, 0, 1, -1]
 dc = [1, -1, 0, 0]
-
+# drc = [(0,1),(0,-1),(1,0),(-1,0)]
 arr = [list(map(int, input().split())) for _ in range(n**2)]
 arr_dict = {}
 for i in range(n**2):
@@ -25,10 +25,12 @@ for i in range(n**2):
                     continue
                 tmp_like_cnt = 0
                 tmp_empty = 0
+                # for dr, dc in drc:
+                #     nr = j+dr
+                #     nc = k+dc
                 for l in range(4):
                     nr = j+dr[l]
                     nc = k+dc[l]
-
                     if nr < 0 or nr >= n or nc < 0 or nc >= n:
                         continue
                     if ban[nr][nc] == 0:
