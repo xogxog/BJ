@@ -29,9 +29,7 @@ def eat_fish(grid, tmp_ans,shark):
             if f_flag :
                 break
         idx += 1
-    # print(f'물고기이동')
-    # for z in range(4):
-    #     print(*grid[z])
+
     # 상어이동
     s_r,s_c,s_d = shark
     ate_fish = []
@@ -41,15 +39,12 @@ def eat_fish(grid, tmp_ans,shark):
         s_nc = s_c + (i*dc[s_d])
         # 범위 안이고 물고기가 있다면
         if 0<=s_nr<4 and 0<=s_nc<4 and len(grid[s_nr][s_nc]) :
+            # 여기서 tmp_grid = deepcopy(grid)를하면 44,45,49,50번째 줄은 필요가 없다.
             flag = 1
             ate_fish = grid[s_nr][s_nc]
             new_direct = grid[s_nr][s_nc][1]
             grid[s_nr][s_nc] = [17,new_direct] # 상어 이동한 곳으로 집어 넣기
             grid[s_r][s_c] = [] # 상어 있던곳 비우기
-            # print(f'상어 이동!!!')
-            # print(f'tmp_ans : {tmp_ans+ate_fish[0]}')
-            # for z in range(4):
-            #     print(*grid[z])
             eat_fish(deepcopy(grid),tmp_ans+ate_fish[0],[s_nr,s_nc,ate_fish[1]])
             grid[s_r][s_c] = [17,s_d]
             grid[s_nr][s_nc] = ate_fish
@@ -57,12 +52,6 @@ def eat_fish(grid, tmp_ans,shark):
     if not flag : # 갈곳이 없음
         ans = max(tmp_ans,ans)
         return
-
-
-
-   # 상어 위치 바꾸기 전에 해당 자리 비워줘야함
-
-
 
 grid = [[[] for _ in range(4)] for __ in range(4)]
 for _ in range(4):
